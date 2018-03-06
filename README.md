@@ -220,14 +220,17 @@ end
 
 ### pdns_recursor_install
 
-Installs PowerDNS recursor 4.X series using PowerDNS official repository in the supported platforms.
+Installs PowerDNS recursor 4.X series using PowerDNS official repository in the supported platforms. This service supports the install and upgrade actions.
 
 #### Properties
+
+The install action supports these properties.
 
 | Name           | Class       |  Default value  | Consistent? |
 |----------------|-------------|-----------------|-------------|
 | version        | String      | name_property   | Yes         |
 | debug          | True, False | String, nil     | No          |
+| allow_upgrade  | True, False | false           | No          |
 
 #### Usage Example
 
@@ -235,6 +238,12 @@ Install a 4. powerdns instance named 'my_recursor' on ubuntu 14.04:
 
     pdns_recursor_install 'my_recursor' do
       version '4.0.4-1pdns.trusty'
+    end
+
+Upgrade to the latest version of PowerDNS available from the official repository.
+
+    pdns_recursor_install 'my_recursor' do
+      action :upgrade
     end
 
 ### pdns_recursor_service
